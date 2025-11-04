@@ -1,0 +1,54 @@
+# Dependencies
+node_modules
+
+# Build outputs
+dist
+build
+generated
+
+# Environment files
+.env
+.env.*
+
+# Logs
+*.log
+logs
+
+# IDE files
+.vscode
+.idea
+.DS_Store
+
+# Lock files
+*.lock
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+bun.lock
+
+# TypeScript build info
+*.tsbuildinfo
+
+# Prisma generated files
+/src/generated/prisma
+
+# Convex generated files
+convex/_generated/
+convex/*.js
+convex/*.d.ts
+convex/*.js.map
+convex/*.d.ts.map
+
+# Cache directories
+.cache
+.tmp
+.next
+out
+
+# Coverage reports
+coverage
+
+# Other
+.history
+.serverless
+.firebase

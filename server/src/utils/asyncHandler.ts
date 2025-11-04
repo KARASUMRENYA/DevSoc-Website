@@ -6,7 +6,11 @@ import type { Request, Response, NextFunction, RequestHandler } from "express";
  * @returns A wrapped route handler that catches async errors
  */
 const asyncHandler = (
-  requestHandler: (req: Request, res: Response, next: NextFunction) => Promise<any>
+  requestHandler: (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => Promise<any>
 ): RequestHandler => {
   return (req, res, next) => {
     Promise.resolve(requestHandler(req, res, next)).catch(next);

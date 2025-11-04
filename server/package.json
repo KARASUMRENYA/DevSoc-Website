@@ -7,7 +7,22 @@
   "scripts": {
     "start": "node dist/index.js",
     "build": "tsc -b",
-    "dev": "tsc -b && node dist/index.js"
+    "dev": "tsc -b && node dist/index.js",
+    "dev:full": "npm run db:generate && npm run build && npm run convex:dev:once",
+    "convex:clean": "rm -f convex/*.js convex/*.d.ts convex/*.js.map convex/*.d.ts.map && rm -rf convex/_generated",
+    "convex:dev": "npm run convex:clean && convex dev",
+    "convex:dev:once": "npm run convex:clean && convex dev --once",
+    "convex:deploy": "npm run convex:clean && convex deploy",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:migrate": "prisma migrate dev",
+    "db:studio": "prisma studio",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "format:src": "prettier --write \"src/**/*.{ts,js,json}\"",
+    "format:convex": "prettier --write \"convex/**/*.{ts,js,json}\"",
+    "lint": "npm run format:check && npm run build",
+    "precommit": "npm run format && npm run build && npm run convex:dev:once"
   },
   "keywords": [],
   "author": "",
@@ -17,10 +32,14 @@
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.5",
     "@types/jsonwebtoken": "^9.0.10",
+    "prettier": "^3.6.2",
     "typescript": "^5.9.3"
   },
   "dependencies": {
     "@prisma/client": "^6.18.0",
+    "argon2": "^0.44.0",
+    "axios": "^1.13.1",
+    "convex": "^1.28.2",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
