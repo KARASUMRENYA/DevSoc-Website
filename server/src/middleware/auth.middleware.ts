@@ -40,3 +40,29 @@ export function verifyAuth(req: Request, res: Response, next: NextFunction) {
       .json({ message: "Invalid or expired access token" });
   }
 }
+
+export function verifyAdmin(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  if (req.auth?.role !== "ADMIN") {
+    return res
+      .status(UNAUTHORIZED)
+      .json({ message: "Admin privileges required" });
+  }
+  next();
+}
+
+export function verifySubcommittee(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  if (req.auth?.role !== "SUBCOMMITTEE") {
+    return res
+      .status(UNAUTHORIZED)
+      .json({ message: "Subcommittee privileges required" });
+  }
+  next();
+}

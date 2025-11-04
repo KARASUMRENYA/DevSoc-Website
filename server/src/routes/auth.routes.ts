@@ -18,7 +18,7 @@ authRouter.post("/refresh", refreshToken);
 
 authRouter.get("/me", verifyAuth, getProfile);
 authRouter.patch("/update", verifyAuth, updateProfile);
-authRouter.delete("/me", verifyAuth, deleteProfile);
+authRouter.delete("/delete", verifyAuth, deleteProfile);
 authRouter.get("/logout", logout);
 
 export default authRouter;

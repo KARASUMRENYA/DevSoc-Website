@@ -5,6 +5,7 @@ import { prisma } from "./libs/db.js";
 import { envKeys } from "./utils/envKeys.js";
 import { errorHandler } from "./middleware/errorHandler.middleware.js";
 import authRouter from "./routes/auth.routes.js";
+import newsletterRouter from "./routes/newsletter.routes.js";
 
 const app = express();
 app.use(cookieParser());
@@ -24,6 +25,7 @@ app.get("/", (req, res) => {
   res.send("Hello, World!");
 });
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/news", newsletterRouter);
 
 app.use(errorHandler);
 
